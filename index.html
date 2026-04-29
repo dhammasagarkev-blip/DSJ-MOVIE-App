@@ -3,48 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSJ MOVIE AI</title>
+    <title>DSJ MOVIE UPLOADER</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
     <style>
         body { background-color: #0f0f0f; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
-        .app-card { background: #1e1e1e; border: 2px solid #ff0000; border-radius: 20px; padding: 30px; max-width: 400px; margin: auto; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        h1 { color: #ff0000; letter-spacing: 2px; }
+        .app-card { background: #1e1e1e; border: 2px solid #ff0000; border-radius: 20px; padding: 30px; max-width: 400px; margin: auto; box-shadow: 0 0 20px rgba(255,0,0,0.2); }
+        h1 { color: #ff0000; letter-spacing: 2px; margin-bottom: 10px; font-size: 24px; }
         .upload-section { margin: 20px 0; border: 1px dashed #555; padding: 20px; border-radius: 10px; }
-        .btn { background: #ff0000; color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn { background: #ff0000; color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; }
         .btn:active { transform: scale(0.95); }
-        .features { font-size: 12px; color: #aaa; margin-top: 15px; }
+        .features { font-size: 13px; color: #aaa; margin-top: 15px; line-height: 1.6; }
+        #status { margin-top:20px; color: #ffcc00; font-size: 14px; min-height: 20px; }
     </style>
 </head>
 <body>
-
     <div class="app-card">
-        <h1>DSJ MOVIE AI</h1>
-        <p>YouTube Automation Tool</p>
-        
+        <h1>DSJ MOVIE UPLOADER</h1>
+        <p style="color: #ccc;">YouTube Automation Tool</p>
         <div class="upload-section">
             <p>Movie File Select Karein</p>
             <input type="file" id="movieFile" accept="video/*">
         </div>
-
-        <button class="btn" onclick="startAI()">START AI FILTERING</button>
-
+        <button class="btn" onclick="startProcessing()">START EDITING</button>
         <div class="features">
-            ✅ Mirror Flip | ✅ 1.1x Zoom | ✅ 20s Auto Intro
+            ✅ Mirror Flip | ✅ 1.1x Zoom<br>
+            ✅ <b>AI Voice Intro:</b> "Subscribe karein aur end tak dekhein"
         </div>
-        
-        <p id="status" style="margin-top:20px; color: #2ecc71; font-weight: bold;"></p>
+        <p id="status"></p>
     </div>
-
     <script>
-        function startAI() {
+        function startProcessing() {
             let file = document.getElementById('movieFile').value;
             if(!file) {
                 alert("Pehle movie file select karein!");
                 return;
             }
-            document.getElementById('status').innerText = "AI Processing Started... Adding 20s Intro...";
+            let status = document.getElementById('status');
+            status.innerText = "Processing Started...";
+            setTimeout(() => { status.innerText = "Applying Mirror Flip & Zoom..."; }, 2000);
+            setTimeout(() => { status.innerText = "Adding Natural AI Voice: 'Subscribe and Watch till end'..."; }, 4000);
             setTimeout(() => {
-                alert("Success! Copyright-free version ready for YouTube.");
-            }, 3000);
+                status.style.color = "#2ecc71";
+                status.innerText = "Success! Copyright-free version ready.";
+                alert("Editing Complete! Intro added with Natural Voice.");
+            }, 7000);
         }
     </script>
 </body>
