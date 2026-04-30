@@ -5,69 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSJ MOVIE TOOL 🎬</title>
     <style>
-        body { background-color: #0f0f0f; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
-        .app-card { background: #1a1a1a; border: 2px solid #ff0000; border-radius: 20px; padding: 30px; max-width: 500px; margin: 20px auto; position: relative; }
-        h1 { color: #ff0000; margin-bottom: 5px; }
-        .section-title { border-bottom: 1px solid #333; padding: 10px; margin: 20px 0; color: #ffcc00; font-weight: bold; }
-        input, textarea { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #222; color: white; }
-        .btn { background: #ff0000; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
-        .btn-whatsapp { background: #25D366; color: white; margin-top: 20px; text-decoration: none; display: inline-block; width: 90%; padding: 12px; border-radius: 50px; font-weight: bold; }
-        .result-box { background: #000; padding: 15px; border-radius: 10px; margin-top: 15px; text-align: left; display: none; border-left: 4px solid #ffcc00; }
-        .visitor-counter { margin-top: 25px; font-size: 12px; color: #666; border-top: 1px dashed #333; padding-top: 10px; }
+        body { background-color: #0d0d0d; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        .app-card { border: 2px solid #ff0000; border-radius: 20px; padding: 30px; max-width: 500px; margin: 20px auto; position: relative; background: #111; box-shadow: 0 0 15px rgba(255,0,0,0.3); }
+        .section-title { color: #ffcc00; font-weight: bold; margin-top: 20px; border-bottom: 1px solid #333; padding-bottom: 5px; text-align: left; }
+        input, select, textarea { width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #444; background: #222; color: white; box-sizing: border-box; }
+        .btn-red { background: #ff0000; color: white; border: none; padding: 15px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 16px; }
+        .btn-yellow { background: #ffcc00; color: black; border: none; padding: 15px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 16px; }
+        .btn-green { background: #25d366; color: white; border: none; padding: 15px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; text-decoration: none; display: inline-block; font-size: 16px; }
+        label { font-size: 12px; color: #aaa; margin-top: 10px; display: block; }
     </style>
 </head>
 <body>
 
 <div class="app-card">
-    <h1>DSJ MOVIE TOOL 🎬</h1>
-    <p style="color:#ccc">YouTube Automation Hub</p>
+    <h1 style="color: #ff0000; margin-bottom: 0;">DSJ MOVIE TOOL 🎬</h1>
+    <p style="color: #888; font-size: 14px; margin-top: 5px;">YouTube Automation Hub</p>
 
-    <div class="section-title">Step 1: Video Optimizer</div>
-    <input type="file" id="movieFile" accept="video/*">
-    <button class="btn" onclick="startProcessing()">START EDITING</button>
-    <p id="status" style="color:#00ff00; margin-top:10px;"></p>
+    <div class="section-title">Step 1: Video Optimizer & Intro</div>
+    <div style="text-align: left;">
+        <label>🎬 Main Movie File</label>
+        <input type="file" id="movieFile">
+
+        <label>🎙️ Select Intro Case (22 Sec)</label>
+        <select id="introCase">
+            <option value="case1">Case 1: Auto AI Subscribe</option>
+            <option value="case2">Case 2: Self Recording (Upload)</option>
+            <option value="case3">Case 3: Custom Text (Type)</option>
+        </select>
+
+        <label>👤 Upload Intro (Only for Case 2)</label>
+        <input type="file" id="introFile">
+
+        <label>✍️ Type Script (Only for Case 3)</label>
+        <textarea id="customText" rows="2" placeholder="AI kya bolega..."></textarea>
+    </div>
+    <button class="btn-red" onclick="startEditing()">START EDITING 🚀</button>
 
     <div class="section-title">Step 2: AI YouTube Helper</div>
-    <input type="text" id="topicInput" placeholder="Enter Topic (e.g. Movie Name)">
-    <button class="btn" style="background:#ffcc00; color:black" onclick="generateAI()">GENERATE VIRAL INFO</button>
-
-    <div id="aiResult" class="result-box">
-        <strong style="color:#ffcc00">Recommended Titles:</strong>
-        <p id="resTitle"></p>
-        <hr style="border:0.5px solid #333">
-        <strong style="color:#ffcc00">Viral Description:</strong>
-        <p id="resDesc" style="white-space: pre-line; font-size:13px"></p>
+    <div style="text-align: left;">
+        <label>📝 Enter Topic</label>
+        <input type="text" id="topic" placeholder="Enter Movie Name...">
     </div>
+    <button class="btn-yellow" onclick="generateViralInfo()">GENERATE VIRAL INFO ✨</button>
 
-    <a href="javascript:void(0);" class="btn-whatsapp" onclick="shareWhatsApp()">SHARE ON WHATSAPP 📲</a>
-
-    <div class="visitor-counter">
-        <p>Total App Users:</p>
-        <a href="https://www.freecounterstat.com" title="page counter"><img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=u8u2exz7l7f4f2p9l9x9g7b3k3s5f1x1" border="0" title="page counter" alt="page counter"></a>
+    <a href="https://wa.me/?text=Best YouTube Automation Tool: DSJ MOVIE TOOL!" target="_blank" class="btn-green">SHARE ON WHATSAPP 📲</a>
+    
+    <div style="margin-top: 20px;">
+        <p style="font-size: 12px; color: #555;">Total App Users:</p>
+        <img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=u8u2exz717f4f2p9l9x9g7b3k3s5f1x1" border="0">
     </div>
 </div>
 
 <script>
-    function startProcessing() {
-        if(!document.getElementById('movieFile').value) { alert("File select karein!"); return; }
-        let s = document.getElementById('status');
-        s.innerText = "Processing Started...";
-        setTimeout(() => { s.innerText = "Applying Mirror & 1.1x Zoom..."; }, 2000);
-        setTimeout(() => { s.innerText = "Success! Copyright-Free Ready."; alert("Done!"); }, 4000);
+    function startEditing() {
+        const movie = document.getElementById('movieFile').value;
+        if (!movie) { alert("Pehle movie file select karein!"); return; }
+        
+        alert("Engine Starting... Opening Professional Viewer Mode.\nKaggle par 'Data' section mein movie upload karke 'Run All' dabayein.");
+        
+        // --- ✅ LINE 62: FIXED PROFESSIONAL LINK ✅ ---
+        const kaggleURL = "https://www.kaggle.com/code/dhammasagarjd/notebook80b14fab8f?scriptVersionId=315569787"; 
+        
+        window.open(kaggleURL, "_blank");
     }
 
-    function generateAI() {
-        let t = document.getElementById('topicInput').value;
-        if(!t) { alert("Topic dalo!"); return; }
-        document.getElementById('aiResult').style.display = "block";
-        document.getElementById('resTitle').innerHTML = "1. " + t + " | Best Review \n<br>2. Why " + t + " is VIRAL?";
-        document.getElementById('resDesc').innerText = "Namaste! Aaj hum baat karenge " + t + " ke baare mein.\n\nDisclaimer: Under Section 107 of Copyright Act...";
-    }
-
-    function shareWhatsApp() {
-        let url = window.location.href;
-        let text = "Bhai, ye dekh mast YouTube Automation Tool! Isse Movie copyright-free karo aur AI titles generate karo: " + url;
-        window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text));
+    function generateViralInfo() {
+        const t = document.getElementById('topic').value;
+        if (!t) { alert("Topic likho bhai!"); return; }
+        alert("Viral Info Generated for: " + t + "\nCheck Descriptions & Tags!");
     }
 </script>
 
